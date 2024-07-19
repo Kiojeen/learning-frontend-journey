@@ -179,88 +179,89 @@
                 </div>
             </div>            
         </section>
+    </div>
+    
+    <!-- Toggle Theme Button -->
+    <button id="theme-toggle" title="Toggle light/dark theme">🌓</button>
 
-        <!-- Toggle Theme Button -->
-        <button id="theme-toggle" title="Toggle light/dark theme">🌓</button>
+    <script>
+        // Predefinations
+        const fetchJokeButton = document.getElementById("fetch-joke");
+        const jokesContainer = document.getElementById("jokes");
+        const fetchedJokes = document.getElementById("joke-count");
+        const toggleThemeButton = document.getElementById("theme-toggle");
+        const errorLog = document.getElementById("error-log");
+        let jokesCounter = 1;
 
-        <script>
-            // Predefinations
-            const fetchJokeButton = document.getElementById("fetch-joke");
-            const jokesContainer = document.getElementById("jokes");
-            const fetchedJokes = document.getElementById("joke-count");
-            const toggleThemeButton = document.getElementById("theme-toggle");
-            const errorLog = document.getElementById("error-log");
-            let jokesCounter = 1;
-
-            async function fetchJoke() {
-                try {
-                    const response = await fetch("https://icanhazdadjoke.com/", {
-                        method: "GET",
-                        headers: {
-                            "Accept": "application/json",
-                        },
-                    });
-                    const data = await response.json();
-                    return data.joke;
-                } catch (error) {
-                    throw `Error: Check your internet connection.`;
-                }
-            }
-
-            function createJokeElement(joke) {
-                const jokeElement = document.createElement("div");
-                jokeElement.classList.add("joke");
-                jokeElement.innerHTML = `
-                <p>${joke}</p>
-                <div class="joke-action">
-                <div class="separator"></div>
-                    <button onclick="copyJoke(this)">Copy</button>
-                    <button onclick="deleteJoke(this)">Delete</button>
-                </div>
-                `;
-                return jokeElement;
-            }
-
-            function updateJokeCounter() {
-                fetchedJokes.textContent = `Fetched jokes: ${jokesCounter}`;
-            }
-
-            async function addJoke() {
-                errorLog.style.display = "none";
-                try {
-                    const joke = await fetchJoke();                     
-                    const jokeElement = createJokeElement(joke);
-                    jokesContainer.prepend(jokeElement);
-                    jokesCounter++;
-                    updateJokeCounter();               
-                } catch (error) {
-                    errorLog.style.display = "block";
-                    errorLog.textContent = error;
-                }
-            }
-
-            function deleteJoke(button) {
-                const jokeElement = button.closest(".joke");
-                jokeElement.remove();
-                jokesCounter--;
-                updateJokeCounter();
-            }
-
-            function toggleTheme() {
-                document.body.classList.toggle('light-theme');
-            }
-
-            function copyJoke(button) {
-                const jokeText = button.parentElement.previousElementSibling.textContent;
-                navigator.clipboard.writeText(jokeText).then(() => {
-                    alert('Joke copied to clipboard!');
+        async function fetchJoke() {
+            try {
+                const response = await fetch("https://icanhazdadjoke.com/", {
+                    method: "GET",
+                    headers: {
+                        "Accept": "application/json",
+                    },
                 });
+                const data = await response.json();
+                return data.joke;
+            } catch (error) {
+                throw `Error: Check your internet connection.`;
             }
+        }
 
-            fetchJokeButton.addEventListener("click", addJoke);
-            toggleThemeButton.addEventListener("click", toggleTheme);
+        function createJokeElement(joke) {
+            const jokeElement = document.createElement("div");
+            jokeElement.classList.add("joke");
+            jokeElement.innerHTML = `
+            <p>${joke}</p>
+            <div class="joke-action">
+            <div class="separator"></div>
+                <button onclick="copyJoke(this)">Copy</button>
+                <button onclick="deleteJoke(this)">Delete</button>
+            </div>
+            `;
+            return jokeElement;
+        }
 
-        </script>
+        function updateJokeCounter() {
+            fetchedJokes.textContent = `Fetched jokes: ${jokesCounter}`;
+        }
+
+        async function addJoke() {
+            errorLog.style.display = "none";
+            try {
+                const joke = await fetchJoke();                     
+                const jokeElement = createJokeElement(joke);
+                jokesContainer.prepend(jokeElement);
+                jokesCounter++;
+                updateJokeCounter();               
+            } catch (error) {
+                errorLog.style.display = "block";
+                errorLog.textContent = error;
+            }
+        }
+
+        function deleteJoke(button) {
+            const jokeElement = button.closest(".joke");
+            jokeElement.remove();
+            jokesCounter--;
+            updateJokeCounter();
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+        }
+
+        function copyJoke(button) {
+            const jokeText = button.parentElement.previousElementSibling.textContent;
+            navigator.clipboard.writeText(jokeText).then(() => {
+                alert('Joke copied to clipboard!');
+            });
+        }
+
+        fetchJokeButton.addEventListener("click", addJoke);
+        toggleThemeButton.addEventListener("click", toggleTheme);
+
+    </script>
 </body>
 
 </html>
