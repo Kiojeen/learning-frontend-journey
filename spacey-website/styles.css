@@ -156,6 +156,10 @@ input[type="submit"]:hover {
 
 /* queries */
 @media (max-width: 1000px) {
+  body {
+    font-size: 0.9em;
+  }
+  
   header {
     flex-direction: column;
   }
@@ -166,5 +170,9 @@ input[type="submit"]:hover {
 
   .logo-container img {
     margin-bottom: 0.5rem;
+  }
+
+  .main-right img {
+    display: none;
   }
 }
