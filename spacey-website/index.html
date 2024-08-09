@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Explore the mysteries of the universe with Space Y, your gateway to the stars." />
+    <meta name="keywords" content="space, exploration, astronomy, Space Y, stars, universe, galaxy" />
+    <meta name="author" content="Kiojeen" />
+    <link rel="icon" href="./spacey-logo.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Sapce Y</title>
+  </head>
+
+  <body>
+    <div class="grid-container">
+      <header>
+        <div class="logo-container">
+          <img src="spacey-logo.png" alt="SpaceY Logo" />
+          <h1>Space Y</h1>
+        </div>
+        <nav>
+          <a href="#">Home</a>
+          <a href="#">Products</a>
+          <a href="#">Services</a>
+          <button class="btn" id="login-btn">Login</button>
+        </nav>
+      </header>
+      <main>
+        <section id="signup">
+          <div class="main-left">
+            <form id="signup-form">
+              <h2>Sign up now and get your space ship</h2>
+              <input type="email" id="email" placeholder="Email" required />
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
+              <input type="submit" value="Sign up" />
+            </form>
+          </div>
+        </section>
+
+        <section id="about-us">
+          <div class="main-left">
+            <h2>About Us - Space Y</h2>
+            <p>
+              At Space Y, we're all about making your space dreams come true! We
+              build sleek, powerful spaceships designed for explorers, dreamers,
+              and thrill-seekers ready to venture beyond Earth. Our mission? To
+              make space travel as exciting and accessible as a weekend getaway.
+              From interplanetary jaunts to cosmic joyrides, Space Y is here to
+              take you to infinity and beyond. Ready to blast off? With Space Y,
+              the universe is your playground!
+            </p>
+          </div>
+        </section>
+
+        <div class="main-right">
+          <img src="./astronaut.svg" alt="Astronaut" />
+        </div>
+      </main>
+    </div>
+    <div id="no-backend-notice">
+      This is a frontend-only website. No data is being sent to a backend
+      server.
+    </div>
+
+    <script>
+      document.getElementById("login-btn").addEventListener("click", function () {
+          showNoBackendNotice();
+        });
+
+      document.getElementById("signup-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          showNoBackendNotice();
+        });
+
+      function showNoBackendNotice() {
+        const notice = document.getElementById("no-backend-notice");
+        notice.style.display = "block";
+        setTimeout(() => {
+          notice.style.display = "none";
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>
