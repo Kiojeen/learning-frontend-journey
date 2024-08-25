@@ -94,7 +94,7 @@ const recommendedApps = [
   },
   {
     imgSrc: "./assets/images/word-document-icon.png",
-    label: "Building yout own website",
+    label: "Building your own website",
   },
   {
     imgSrc: "./assets/images/xbox-icon.png",
