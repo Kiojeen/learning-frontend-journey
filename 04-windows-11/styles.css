@@ -1,0 +1,415 @@
+:root {
+  --background-color: #202026;
+  --primary-text-color: #ffffff;
+  --secondary-background-color: #29292b;
+  --border-color: rgba(255, 255, 255, 0.2);
+  --hover-background-color: rgba(255, 255, 255, 0.1);
+  --hover-border-color: rgba(126, 126, 126, 0.178);
+  --tooltip-background-color: rgba(31, 31, 37, 0.692);
+  --taskbar-height: 60px;
+  --start-width: 670px;
+  --start-height: 770px;
+  --search-width: 225px;
+  --desktop-icon-size: 45px;
+  --taskbar-icon-size: 25px;
+  --border-radius-input: 50px;
+  --border-radius-one: 10px;
+  --border-radius-two: 5px;
+  --font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#desktop {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 25px;
+}
+
+.desktop-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid transparent;
+  width: 80px;
+  padding: 4px;
+}
+
+.desktop-item:hover {
+  background-color: var(--hover-background-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-two);
+}
+
+.desktop-item img {
+  width: var(--desktop-icon-size);
+  height: var(--desktop-icon-size);
+  user-select: none;
+  pointer-events: none;
+}
+
+.desktop-item span {
+  font-size: 12px;
+  color: var(--primary-text-color);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+  word-wrap: break-word;
+  max-width: 100%;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+#taskbar {
+  opacity: 0.98;
+  background-color: var(--background-color);
+  width: 100%;
+  list-style-type: none;
+  position: fixed;
+  bottom: 0;
+  border-top: 0.5px var(--border-color) solid;
+  align-items: center;
+  padding: 2px 16px 5px 16px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.taskbar-item {
+  float: left;
+  height: 100%;
+  margin: 0 4px;
+}
+
+.taskbar-item .taskbar-icon img {
+  width: var(--taskbar-icon-size);
+  display: block;
+}
+
+.taskbar-item .taskbar-icon {
+  height: 40px;
+  width: 40px;
+  border-top: 0.01px transparent solid;
+  transition: background-color 0.5s ease;
+  border-radius: var(--border-radius-two);
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.taskbar-item .taskbar-icon:hover {
+  background-color: var(--hover-background-color);
+  border-top: 0.01px var(--hover-border-color) solid;
+}
+
+.taskbar-item:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.taskbar-item .tooltip {
+  visibility: hidden;
+  background-color: var(--tooltip-background-color);
+  color: white;
+  position: absolute;
+  bottom: 150%;
+  padding: 6px 9px;
+  font-size: 11px;
+  border-radius: var(--border-radius-one);
+  box-shadow: 3px -0.5px 5px var(--tooltip-background-color);
+  opacity: 0;
+  transition: opacity 1s ease;
+  text-align: center;
+  z-index: 1;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+#taskbar-search-container {
+  position: relative;
+  width: var(--search-width);
+}
+
+#taskbar-search {
+  border-radius: var(--border-radius-input);
+  background-color: #3f3f45;
+  border: none;
+  border-top: 0.5px var(--border-color) solid;
+  color: white;
+  padding: 6px 16px;
+  padding-left: 40px;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 400;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+}
+
+#start-search-container {
+  padding: 32px;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+#start-search {
+  border-radius: var(--border-radius-input);
+  outline: none;
+  background-color: var(--background-color);
+  color: white;
+  border: 1px solid var(--border-color);
+  width: 100%;
+  height: 30px;
+  padding: 0 16px 0 40px;
+  box-sizing: border-box;
+}
+
+#start-search-icon {
+  width: 20px;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+#search-icon {
+  left: 12px;
+  top: 50%;
+  position: absolute;
+  transform: translateY(-50%);
+  width: 20px;
+  pointer-events: none;
+}
+
+#wallpaper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1000;
+}
+
+.start-wrapper {
+  height: var(--start-height);
+  width: var(--start-width);
+  overflow: hidden;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 40px;
+}
+
+#start-menu {
+  background-color: var(--background-color);
+  height: calc(var(--start-height) - 20px);
+  width: calc(var(--start-width) - 20px);
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: var(--border-radius-one);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  opacity: 0.98;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: bottom 0.1s ease-out;
+  z-index: 1;
+  bottom: -100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#start-menu.active {
+  bottom: 15px;
+}
+
+#start-apps-container {
+  background-color: var(--secondary-background-color);
+  height: calc(100% - 70px);
+  width: 100%;
+  border-radius: var(--border-radius-one) var(--border-radius-one) 0 0;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+  opacity: 0.98;
+  box-sizing: border-box;
+}
+
+
+#pinned-apps-header,
+#recommended-apps-header {
+  padding: 5px 64px;
+  font-size: 14px;
+  overflow: auto;
+}
+
+#pinned-apps-header button,
+#recommended-apps-header button {
+  float: right;
+  background-color: #363738;
+  color: white;
+  border-radius: var(--border-radius-two);
+  border: none;
+  border-top: 0.01px solid var(--border-color);
+  padding: 3px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#pinned-apps-header button:hover,
+#recommended-apps-header button:hover,
+#start-power-container #power-button:hover,
+#user-account:hover {
+  background-color: #3f3f45;
+}
+
+#pinned-apps {
+  height: calc(60% - 50px);
+  color: white;
+}
+
+#recommended-apps {
+  height: calc(40% - 50px);
+  color: white;
+}
+
+
+#pinned-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2px;
+  height: calc(100% - 40px);
+  padding: 20px 64px;
+}
+
+#pinned-apps-grid .start-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+}
+
+#recommended-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  column-gap: 20px;
+  row-gap: 2px;
+  height: calc(100% - 40px);
+  padding: 1px 64px 1px 64px;
+}
+
+#recommended-apps-grid .start-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.start-item:hover {
+  background-color: var(--hover-background-color);
+  border-radius: var(--border-radius-two);
+}
+
+.start-item img {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.start-item span {
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#search:hover {
+  background-color: #46464b;
+}
+
+#start-power-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  color: white;
+  padding: 0 64px;
+  flex-grow: 1;
+  font-size: 12px;
+  color: var(--primary-text-color);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+}
+
+#start-power-container #power-button {
+
+  margin-left: auto;
+  float: right;
+  background-color: transparent;
+  color: white;
+  border-radius: var(--border-radius-two);
+  border: none;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#start-power-container #power-button img {
+  height: 16px;
+}
+
+
+#user-account {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: var(--border-radius-two);
+  padding: 5px 10px;
+}
+
+
+
+#user-account img {
+  border-radius: 50%;
+  width: 30px;
+}
+

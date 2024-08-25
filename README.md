@@ -13,6 +13,9 @@ A web application that allows users to search for TV shows, fetching data from a
 ### Space Y
 A web application that explores the mysteries of the universe. sign up now and get your real life spaceship.
 
+### Windows 11
+A web application that tries to replicate Windows 11 desktop screen without any functionality (The start button is clickable).
+
 ## Disclaimer
 **Please note:**
 1. **Learning Purpose:** This repository is for learning (and hosting lol) purposes. It represents my ongoing learning journey in frontend development.

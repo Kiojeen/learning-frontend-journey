@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Windows 11</title>
+  </head>
+  <body>
+    <!-- Desktop -->
+    <section id="desktop-section">
+      <div id="desktop"></div>
+    </section>
+
+    <!-- Start -->
+    <section id="start-menu-section">
+      <div class="start-wrapper">
+        <div id="start-menu">
+          <div id="start-apps-container">
+            <div id="start-search-container">
+              <div class="search-wrapper">
+                <img
+                  src="./assets/images/search.png"
+                  alt=""
+                  id="start-search-icon"
+                />
+                <input
+                  id="start-search"
+                  type="search"
+                  placeholder="Search for apps, settings and documents"
+                />
+              </div>
+            </div>
+            <div id="pinned-apps">
+              <div id="pinned-apps-header">
+                <span>Pinned</span>
+                <button>All apps ></button>
+              </div>
+              <div id="pinned-apps-grid"></div>
+
+            </div>
+            <div id="recommended-apps">
+              <div id="recommended-apps-header">
+                <span>Recommended</span>
+                <button>More ></button>
+              </div>
+              <div id="recommended-apps-grid"></div>
+
+            </div>
+          </div>
+          <div id="start-power-container">
+            <div id="user-account">
+              <img src="./assets/images/pfp.webp" alt="">
+              <span>Kiojeen</span>
+            </div>
+            <button id="power-button">
+              <img src="./assets/images/shutdown-icon.png" alt="">
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Taskbar -->
+    <ul id="taskbar">
+      <li class="taskbar-item">
+        <div class="taskbar-icon">
+          <img
+            src="./assets/images/windows-logo.png"
+            style="width: 35px"
+            alt=""
+            id="start-button"
+          />
+        </div>
+        <div class="tooltip">Start</div>
+      </li>
+
+      <!-- Taskbar search -->
+      <li class="taskbar-item">
+        <div id="taskbar-search-container">
+          <input id="taskbar-search" type="search" placeholder="Search" />
+          <img id="search-icon" src="./assets/images/search.png" alt="Search" />
+        </div>
+      </li>
+    </ul>
+
+    <!-- Wallpaper -->
+    <img id="wallpaper" src="./assets/images/wallpaper.webp" alt="wallpaper" />
+
+    <script src="./scripts.js"></script>
+  </body>
+</html>
